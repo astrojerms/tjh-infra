@@ -15,8 +15,8 @@ jobs:
     environment: production
 
     env:
-      TF_VAR_aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
-      TF_VAR_aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+      TF_VAR_aws_access_key: ${{ secrets.TF_VAR_AWS_ACCESS_KEY }}
+      TF_VAR_aws_secret_key: ${{ secrets.TF_VAR_AWS_SECRET_KEY }}
 
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
