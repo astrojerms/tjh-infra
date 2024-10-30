@@ -56,6 +56,8 @@ jobs:
     env:
       TF_VAR_aws_access_key: ${{ secrets.TF_VAR_AWS_ACCESS_KEY }}
       TF_VAR_aws_secret_key: ${{ secrets.TF_VAR_AWS_SECRET_KEY }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.TF_VAR_AWS_ACCESS_KEY }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.TF_VAR_AWS_SECRET_KEY }}
 
     steps:
       - name: Checkout repository
