@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  terraform-apply:
+  terraform-plan:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: production
