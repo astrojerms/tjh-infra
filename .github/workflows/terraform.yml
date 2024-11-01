@@ -71,8 +71,8 @@ jobs:
 
       - name: Initialize Terraform
         working-directory:   terraform
-        run: terraform init
+        run: terraform init -input=false --var-file=envs/dev.tfvars
 
       - name: Terraform Apply
         working-directory: terraform
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -input=false --var-file=envs/dev.tfvars
