@@ -48,7 +48,7 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       working-directory: terraform
-      run: terraform plan -input=false --var-file=envs/dev.tfvars -chdir=deployments/eks-cluster
+      run: terraform -chdir=deployments/eks-cluster plan -input=false --var-file=envs/dev.tfvars
 
   terraform-apply:
     needs: terraform-plan  # Only runs if terraform-plan completes successfully
@@ -75,4 +75,4 @@ jobs:
 
       - name: Terraform Apply
         working-directory: terraform
-        run: terraform apply -auto-approve -input=false --var-file=envs/dev.tfvars -chdir=deployments/eks-cluster
+        run: terraform -chdir=deployments/eks-cluster apply -auto-approve -input=false --var-file=envs/dev.tfvars
