@@ -85,3 +85,9 @@ variable "vpc_cidr" {
   type        = string
   default     = "10.0.0.0/16"
 }
+
+variable "enabled" {
+  description = "CIDR block for the VPC"
+  type        = bool
+  default     = false
+}

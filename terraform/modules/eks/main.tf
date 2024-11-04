@@ -8,10 +8,10 @@ module "eks" {
   enable_irsa     = true
   eks_managed_node_groups = {
     eks_nodes = {
-      desired_size = var.node_desired_size
-      max_size     = var.node_max_size
-      min_size     = var.node_min_size
-      instance_type    = var.node_instance_type
+      desired_size  = var.node_desired_size
+      max_size      = var.node_max_size
+      min_size      = var.node_min_size
+      instance_type = var.node_instance_type
     }
   }
 
