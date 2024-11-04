@@ -38,17 +38,17 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       working-directory: terraform
-      run: terraform init
+      run: terraform init -chdir=terraform/deployments/eks-cluster
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
       working-directory: terraform
-      run: terraform fmt -check
+      run: terraform fmt -check -recursive
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       working-directory: terraform
-      run: terraform plan -input=false --var-file=envs/dev.tfvars
+      run: terraform plan -input=false --var-file=envs/dev.tfvars -chdir=terraform/deployments/eks-cluster
 
   terraform-apply:
     needs: terraform-plan  # Only runs if terraform-plan completes successfully
@@ -71,8 +71,8 @@ jobs:
 
       - name: Initialize Terraform
         working-directory:   terraform
-        run: terraform init -input=false --var-file=envs/dev.tfvars
+        run: terraform init -input=false --var-file=envs/dev.tfvars -chdir=terraform/deployments/eks-cluster
 
       - name: Terraform Apply
         working-directory: terraform
-        run: terraform apply -auto-approve -input=false --var-file=envs/dev.tfvars
+        run: terraform apply -auto-approve -input=false --var-file=envs/dev.tfvars -chdir=terraform/deployments/eks-cluster

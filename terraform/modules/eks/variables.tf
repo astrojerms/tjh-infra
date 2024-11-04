@@ -44,3 +44,9 @@ variable "node_instance_type" {
   type        = string
   default     = "t3.medium"
 }
+
+variable "enabled" {
+  description = "CIDR block for the VPC"
+  type        = bool
+  default     = false
+}
