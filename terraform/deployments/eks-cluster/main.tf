@@ -5,10 +5,10 @@
 // Using locals to reduce the list to a single value, the first value.
 // If the value is not created, one(...) returns null.
 locals {
-  aws_vpc_id = one(module.vpc[*].vpc_id)
-  aws_subnet_ids = one(module.vpc[*].subnet_ids)
-  aws_eks_cluster_name = one(module.eks[*].cluster_name)
-  aws_eks_cluster_endpoint = one(module.eks[*].cluster_endpoint)
+  aws_vpc_id                        = one(module.vpc[*].vpc_id)
+  aws_subnet_ids                    = one(module.vpc[*].subnet_ids)
+  aws_eks_cluster_name              = one(module.eks[*].cluster_name)
+  aws_eks_cluster_endpoint          = one(module.eks[*].cluster_endpoint)
   aws_eks_cluster_security_group_id = one(module.eks[*].cluster_security_group_id)
 }
 
