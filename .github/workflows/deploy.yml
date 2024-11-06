@@ -52,4 +52,5 @@ jobs:
       - name: Deploy Helm Chart
         working-directory: ./helm/charts/tjh-backend
         run: |
+          helm dependency build
           helm install tjh-backend . -f ./values.yaml --create-namespace --namespace tjh-backend
