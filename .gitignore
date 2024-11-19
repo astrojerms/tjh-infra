@@ -82,3 +82,19 @@ config.xml
 kubernetes
 # VS Code
 .vscode
+
+.terraform/
+terraform.tfvars
+*terraform.tfstate*
+tfplan
+*.log
+*.raw
+*.qcow2
+*.gz
+support.zip
+support/
+talosconfig.yml
+kubeconfig.yml
+kubernetes-ingress-ca-crt.pem
+tmp/
+secret*
