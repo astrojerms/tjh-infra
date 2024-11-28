@@ -66,6 +66,8 @@ override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
+locals.tf
+
 # Sops
 .secrets*
 .decrypted~*
@@ -98,3 +100,4 @@ kubeconfig.yml
 kubernetes-ingress-ca-crt.pem
 tmp/
 secret*
+

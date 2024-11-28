@@ -1,0 +1,66 @@
+import pulumi_proxmoxve as proxmox
+
+virtual_machine = proxmox.vm.VirtualMachine(
+    resource_name="vm",
+    node_name="pve1",
+    agent=proxmox.vm.VirtualMachineAgentArgs(
+        enabled=False, # toggles checking for ip addresses through qemu-guest-agent
+        trim=True,
+        type="virtio"
+    ),
+    bios="seabios",
+    cpu=proxmox.vm.VirtualMachineCpuArgs(
+        cores=1,
+        sockets=1
+    ),
+    clone=proxmox.vm.VirtualMachineCloneArgs(
+        node_name="pve1",
+        vm_id=9000,
+        full=True
+    ),
+    disks=[
+        proxmox.vm.VirtualMachineDiskArgs(
+            interface="scsi0",
+            datastore_id="local-lvm",
+            size=32,
+            file_format="qcow2"
+        )
+    ],
+    memory=proxmox.vm.VirtualMachineMemoryArgs(
+        dedicated=1024
+    ),
+    name="proxmox-vm",
+    network_devices=[
+        proxmox.vm.VirtualMachineNetworkDeviceArgs(
+            bridge="vmbr0",
+            model="virtio"
+        )
+    ],
+    on_boot=True,
+    operating_system=proxmox.vm.VirtualMachineOperatingSystemArgs(type="l26"),
+    initialization=proxmox.vm.VirtualMachineInitializationArgs(
+        type="nocloud",
+        datastore_id="local-lvm",
+        dns=proxmox.vm.VirtualMachineInitializationDnsArgs(
+            domain="google.com",
+            server="8.8.8.8 8.8.4.4"
+        ),
+        ip_configs=[
+            proxmox.vm.VirtualMachineInitializationIpConfigArgs(
+                ipv4=proxmox.vm.VirtualMachineInitializationIpConfigIpv4Args(
+                    address="10.0.0.10/24",
+                    gateway="10.0.0.1"
+                ),
+                ipv6=proxmox.vm.VirtualMachineInitializationIpConfigIpv6Args(
+                    address="fd91:0812:a17f:6194::10/64",
+                    gateway="fd91:0812:a17f:6194::1"
+                )
+            )
+        ],
+        user_account=proxmox.vm.VirtualMachineInitializationUserAccountArgs(
+            username="",
+            password="",
+            keys=["SSH_PUBLIC_KEY"]
+        )
+    )
+)

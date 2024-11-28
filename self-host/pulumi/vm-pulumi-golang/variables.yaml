@@ -1,0 +1,41 @@
+vm:
+  resource_name: "miab"
+  name: "miab"
+  node_name: "pve"
+  on_boot: true
+  agent:
+    enabled: false
+    trim: true
+    type: "virtio"
+  bios: "seabios"
+  cpu:
+    cores: 1
+    sockets: 12
+  clone:
+    node_name: "pve"
+    vm_id: 9000
+    full: true
+  disk:
+    interface: "scsi0"
+    datastore_id: "local-lvm"
+    size: 1200
+    file_format: "qcow2"
+  memory:
+    dedicated: 12800
+  network:
+    model: "virtio"
+    bridge: "vmbr0"
+  operating_system:
+    type: "l26"
+  initialization:
+    datastore_id: "local-lvm"
+    interface: "ide2"
+    ip_config:
+      ipv4:
+        address: "dhcp"
+    dns:
+      servers: ["1.1.1.1", "8.8.8.8"]
+    user_account:
+      username: "miab"
+      password: "miab"
+      keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDOi+k17ajCIOZLDQkH2r0gG/RlVaEVzbjE3aPyt+8GZLfZSfZLwBGrdhnsiIalKGSqgfwqe+mcfeth82O5mo4Fw2LpsqpANJ3OskMGE8Sox4MEP1IEjTRvcSaHa9yQqZhuRWMNL8fNh2B62kI8G7yYxSJss+UpUJYqTW5kprxOLnKFnGdZ2i05oUcuvZEwd73ItfasvjzyZGQYiIB2pga4mWw92XbfTcNqIdQ43LzzcmsuwEOfkb4eKPll+2sf0nOaVSfTQHfBwXqJZxuTkSLVCgEzZl4Sf43QM291qI54EqPhTZWIh9GdB3JJgq8OwzoXLJEERs44pD9uusgMwgEFLDUOa2HZUzn32UwzCuDWMd7I7f1uWGLm4RmcRuQn6//ufK59nLyRhVD5kJ66AT8WDN1qN8d6cWcia/YarZ98VUcRR21a9pwgfPpQItKjSgvo6zVbbKVMYNaeM/JVHYNHoaV+eJNwtqNRwTo8RiRtM3u8nVHlbayBE5s/cqBU0Ik= jeremy@Jeremys-MacBook-Pro.local"]

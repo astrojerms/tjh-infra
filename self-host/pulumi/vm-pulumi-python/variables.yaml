@@ -1,0 +1,31 @@
+vm:
+  resource_name: "miab"
+  name: "miab"
+  node_name: "pve"
+  on_boot: true
+  agent:
+    enabled: false
+    trim: true
+    type: "virtio"
+  bios: "seabios"
+  cpu:
+    cores: 1
+    sockets: 12
+  clone:
+    node_name: "pve"
+    vm_id: 9000
+    full: true
+  disk:
+    interface: "scsi0"
+    datastore_id: "local-lvm"
+    size: 1200
+    file_format: "qcow2"
+  memory:
+    dedicated: 12800
+  network:
+    model: "virtio"
+    bridge: "vmbr0"
+  operating_system:
+    type: "l26"
+  initialization:
+    

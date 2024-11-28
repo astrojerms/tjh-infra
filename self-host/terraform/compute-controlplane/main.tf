@@ -1,4 +1,5 @@
-resource "proxmox_virtual_environment_vm" "computer-worker" {
+resource "proxmox_virtual_environment_vm" "controlplane" {
+
   count = length(var.nodes)
   name      = var.nodes[count.index].node_name
   node_name = var.nodes[count.index].proxmox_node
