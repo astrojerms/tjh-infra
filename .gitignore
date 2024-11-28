@@ -49,6 +49,7 @@ bin
 *.iso
 # Packer
 local.pkrvars.hcl
+downloaded_iso_path
 # Temp folders
 .temp*
 .private/
