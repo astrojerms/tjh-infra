@@ -1,0 +1,81 @@
+version: v1alpha1
+debug: false
+persist: true
+machine:
+  type: worker
+  token: y8umwv.enjy9x75k1fhq6qb
+  ca:
+    crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJQekNCOHFBREFnRUNBaEVBMGZkSjl4UkJnbnBkTFQxZnJXZGFzREFGQmdNclpYQXdFREVPTUF3R0ExVUUKQ2hNRmRHRnNiM013SGhjTk1qUXhNVEUyTVRZMU5EVTFXaGNOTXpReE1URTBNVFkxTkRVMVdqQVFNUTR3REFZRApWUVFLRXdWMFlXeHZjekFxTUFVR0F5dGxjQU1oQUJUMVNLdjMwKzdOOXFUWDdmSERYWElhR0M3c0dXWG1iMTlECkhRSTFhV2g3bzJFd1h6QU9CZ05WSFE4QkFmOEVCQU1DQW9Rd0hRWURWUjBsQkJZd0ZBWUlLd1lCQlFVSEF3RUcKQ0NzR0FRVUZCd01DTUE4R0ExVWRFd0VCL3dRRk1BTUJBZjh3SFFZRFZSME9CQllFRkVDclhzNWVTNmsvbnNFNgoydFhNeGRCNm5tdTFNQVVHQXl0bGNBTkJBTGxOZTdZVy92cVhzdlNFYzc1dXpTalphNGh0TlBGTWtQTGowQ2xCCkZIa3MyMnhrbDRrMCtwL1pXZFlmalQxdmR3UTh6QnZFenhIdUkwM0JMNXdndGdJPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+    key: ""
+  certSANs:
+    - 172.30.250.170
+    - 127.0.0.1
+  kubelet:
+    image: ghcr.io/siderolabs/kubelet:v1.30.0
+    extraMounts:
+      - destination: /var/mnt/longhorn
+        type: bind
+        source: /var/mnt/longhorn
+        options:
+          - bind
+          - rshared
+          - rw
+    defaultRuntimeSeccompProfileEnabled: true
+    disableManifestsDirectory: true
+  network:
+    hostname: talos-worker-00
+    interfaces:
+      - deviceSelector:
+          hardwareAddr: 3a:59:ef:8e:a7:2d
+        addresses:
+          - 172.30.250.180/16
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 172.30.1.1
+        dhcp: false
+    nameservers:
+      - 1.1.1.1
+      - 1.0.0.1
+  disks:
+    - device: /dev/sdb
+      partitions:
+        - mountpoint: /var/mnt/longhorn
+  install:
+    disk: /dev/sda
+    image: factory.talos.dev/installer/613e1592b2da41ae5e265e8789429f22e121aab91cb4deb6bc3c0b6262961245:v1.7.2
+    wipe: false
+  time:
+    disabled: false
+    servers:
+      - time.cloudflare.com
+  features:
+    rbac: true
+    stableHostname: true
+    apidCheckExtKeyUsage: true
+    diskQuotaSupport: true
+    kubePrism:
+      enabled: true
+      port: 7445
+    hostDNS:
+      enabled: true
+cluster:
+  id: 5jLJnz3xZ-t6iCtWtm_ty0p3AZChOXxBIr6R1tVpnAE=
+  secret: RmOAFaFPZP6IEU6rTNygqrcgJpTkNZTa/LVnpiNX3xM=
+  controlPlane:
+    endpoint: https://172.30.250.170:6443
+  network:
+    dnsDomain: cluster.local
+    podSubnets:
+      - 10.14.0.0/16
+    serviceSubnets:
+      - 10.15.0.0/16
+  token: 6704vm.m1ose3odf4f1pk0k
+  ca:
+    crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJpRENDQVMrZ0F3SUJBZ0lRVldwRHp1d1RIRHF2STJwNGVGZWd1ekFLQmdncWhrak9QUVFEQWpBVk1STXcKRVFZRFZRUUtFd3ByZFdKbGNtNWxkR1Z6TUI0WERUSTBNVEV4TmpFMk5UUTFORm9YRFRNME1URXhOREUyTlRRMQpORm93RlRFVE1CRUdBMVVFQ2hNS2EzVmlaWEp1WlhSbGN6QlpNQk1HQnlxR1NNNDlBZ0VHQ0NxR1NNNDlBd0VICkEwSUFCRDZ5YzNUQ3BmMzN0bncyQ3ppTEQ5NXNNRk1qUFBqSU9rb3ZoN1JvRUFqK0F2VllRVFRPK1lzMnhEMXMKcUN0emlRTzFSbXNWMXcvUU1jbHgxNm9wdUdpallUQmZNQTRHQTFVZER3RUIvd1FFQXdJQ2hEQWRCZ05WSFNVRQpGakFVQmdnckJnRUZCUWNEQVFZSUt3WUJCUVVIQXdJd0R3WURWUjBUQVFIL0JBVXdBd0VCL3pBZEJnTlZIUTRFCkZnUVVhTTJiMHE2M2U3TkIveEp1ZGdKMis0R0NqZjB3Q2dZSUtvWkl6ajBFQXdJRFJ3QXdSQUlnRHI3QmFiSVkKeDhIVE5paGQrZ3orU3hXSWlyNFBzcmQrSW5NNkVQQkFveU1DSUcrbHhyaHZtbytVV0RIczdhOUM5WjNocHN0awpSM214VDFvenlCY3JGTXluCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    key: ""
+  discovery:
+    enabled: true
+    registries:
+      kubernetes:
+        disabled: true
+      service: {}
