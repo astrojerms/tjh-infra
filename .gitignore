@@ -37,3 +37,68 @@ override.tf.json
 terraform.rc
 
 .DS_Store
+
+credentials.auto.tfvars
+
+# Trash
+.DS_Store
+Thumbs.db
+# Binaries
+bin
+/flux
+*.iso
+# Packer
+local.pkrvars.hcl
+downloaded_iso_path
+# Temp folders
+.temp*
+.private/
+.logs/
+.task/
+# Terraform
+.terraform*
+terraform.tfstate*
+*.tfstate
+.tfplan
+credentails.*
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+locals.tf
+
+# Sops
+.secrets*
+.decrypted~*
+*.agekey
+sops-key*
+# Kubernetes
+kubeconfig*
+talosconfig*
+*.pub
+*.key
+# Extras
+config.xml
+*.pid
+kubernetes
+# VS Code
+.vscode
+
+.terraform/
+terraform.tfvars
+*terraform.tfstate*
+tfplan
+*.log
+*.raw
+*.qcow2
+*.gz
+support.zip
+support/
+talosconfig.yml
+kubeconfig.yml
+kubernetes-ingress-ca-crt.pem
+tmp/
+secret*
+
